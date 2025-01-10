@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>オンライン自習用サンプルコード</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* 地図の高さを設定 */
+        #map {
+            height: 400px;
+            margin-bottom: 20px;
+        }
+        /* グラフを中央寄せにする */
+        canvas {
+            margin: 0 auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Leaflet.jsとChart.jsのサンプルコード</h1>
+
+    <!-- 地図表示セクション -->
+    <h2>1. 地図の表示 (Leaflet.js)</h2>
+    <div id="map"></div>
+    <script>
+        // Leaflet.jsを使って地図を初期化
+        var map = L.map('map').setView([35.63083227804336, 139.88267637730308], 15); // 地図の中心を東京に設定
+
+        // OpenStreetMapのタイルレイヤーを追加
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+       var marker = L.marker([35.63083227804336, 139.88267637730308]).addTo(map);
+        marker.bindPopup("東京ディズニーリゾート").openPopup(); // マーカーを地図上に追加
+       var marker = L.marker([35.63426798760983, 139.8861096048886]).addTo(map);
+        marker.bindPopup("イクスピアリ").openPopup();var marker = L.marker([35.62523367348963, 139.889092221395]).addTo(map);
+        marker.bindPopup("トイ・ストーリー・マニア！").openPopup();var marker = L.marker([35.63041370433681, 139.8775479934781]).addTo(map);
+        marker.bindPopup("美女と野獣“魔法のものがたり").openPopup(); 
+　　　        // ポリゴンを地図上に追加
+        var polygon = L.polygon([
+            [35.63083227804336, 139.88267637730308],
+            [35.622565041725586, 139.87909294592663],
+            [35.62387320565883, 139.89334084060474]
+        ]).addTo(map);
+        polygon.bindPopup("ディズニーシーのエリア"); // ポリゴンのポップアップメッセージ
+    </script>
+
+    <!-- グラフ表示セクション -->
+    <h2>2. グラフの表示 (Chart.js)</h2>
+    <!-- 棒グラフ -->
+    <canvas id="barChart" width="500" height="200"></canvas>
+    <!-- 折れ線グラフ -->
+    <canvas id="lineChart" width="400" height="200"></canvas>
+    <!-- 円グラフ -->
+    <canvas id="pieChart" width="400" height="200"></canvas>
+
+    <script>
+        // 棒グラフの描画
+        var ctxBar = document.getElementById('barChart').getContext('2d');
+        new Chart(ctxBar, {
+            type: 'bar', // グラフの種類を棒グラフに指定
+            data: {
+                labels: ['2021', '2022','2023'], // x軸のラベル
+                datasets: [{
+                    label: 'ディズニーリゾートの年間来場者数(単位：万人)', // データセットのラベル
+                    data: [1205, 2209, 2751], // 各バーの値
+                    backgroundColor: ['blue', 'blue', 'blue'] // 各バーの色
+                }]
+            }
+        });
+
+        // 折れ線グラフの描画
+        var ctxLine = document.getElementById('lineChart').getContext('2d');
+        new Chart(ctxLine, {
+            type: 'line', // グラフの種類を折れ線グラフに指定
+            data: {
+                labels: ['2013', '2018', '2023'], // x軸のラベル
+                datasets: [{
+                    label: 'ディズニーリゾート年間来場者数の推移(単位：万人)', // データセットのラベル
+                    data: [3130, 3256, 2750], // 各データ点の値
+                    borderColor: 'orange', // 線の色
+                    fill: false // 塗りつぶしを無効化
+                }]
+            }
+        });
+
+        // 円グラフの描画
+        var ctxPie = document.getElementById('pieChart').getContext('2d');
+        new Chart(ctxPie, {
+            type: 'pie', // グラフの種類を円グラフに指定
+            data: {
+                labels: ['チケット収入', '商品販売収入', '飲食販売収入'], // セグメントのラベル
+                datasets: [{
+                    label:'ゲスト1人当たり売上高(2021)(単位：円)',// データセットのラベル
+                    data: [7049, 4548, 3237], // 各セグメントの値
+                    backgroundColor: ['red', 'orange', 'yellow'] // 各セグメントの色
+                }]
+            }
+        });
+    </script>
+</body>
+</html>
