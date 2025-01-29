@@ -10,7 +10,7 @@
 - Leaflet.js
 
 ## デモリンク
-[GitHub Pages](index.html)
+[GitHub Pages](https://nanasi-coder.github.io/kadai-hirooka/)
 
 ## 今後の課題
 - データを動的に更新する。
