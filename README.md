@@ -10,7 +10,7 @@
 - Leaflet.js
 
 ## デモリンク
-[GitHub Pages](https://otkzh.github.io/241218-demo/)
+[GitHub Pages](index.html)
 
 ## 今後の課題
 - データを動的に更新する。
